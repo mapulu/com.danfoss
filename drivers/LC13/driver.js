@@ -31,9 +31,15 @@ module.exports = new ZwaveDriver(path.basename(__dirname), {
 				// This only works with values smaller than 127 and greater than -128 (8bit signed int)
 				// return new Buffer([1, 33, (Math.round(value * 2) / 2 * 10).toFixed(0)]); // Precision = 1, Scale = 0, Size = 1
 
-				// Try prepending 0 before temp value
-				return new Buffer([1, 33, 0, (Math.round(value * 2) / 2 * 10).toFixed(0)]); // Precision = 1, Scale = 0, Size = 1
+				// Create buffers
+				let a = new Buffer([1, 34]); // Precision = 1, Scale = 0, Size = 2
 
+				// Write temperature value to 2 byte buffer
+				let b = new Buffer(2);
+				b.writeUInt16BE((Math.round(value * 2) / 2 * 10).toFixed(0));
+
+				// Concat the buffers and return
+				return Buffer.concat([a,b]);
 			},
 			command_report: 'THERMOSTAT_SETPOINT_REPORT',
 			command_report_parser: report => {
