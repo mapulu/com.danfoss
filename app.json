@@ -28,7 +28,9 @@
 			"zwave": {
 				"manufacturerId": 2,
 				"productTypeId": 5,
+				"wakeUpInterval": 300,
 				"productId": [
+					3,
 					4
 				],
 				"learnmode": {
@@ -56,10 +58,7 @@
 			"images": {
 				"large": "/drivers/LC13/assets/images/large.jpg",
 				"small": "/drivers/LC13/assets/images/small.jpg"
-			},
-			"settings": [
-
-			]
+			}
 		}
 	],
 	"flow": {
