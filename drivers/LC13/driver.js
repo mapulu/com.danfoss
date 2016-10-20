@@ -58,7 +58,6 @@ module.exports = new ZwaveDriver(path.basename(__dirname), {
 				}
 				return null;
 			},
-			pollInterval: 'poll_interval'
 		},
 	},
 	settings: {
