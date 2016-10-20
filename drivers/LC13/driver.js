@@ -20,37 +20,45 @@ module.exports = new ZwaveDriver(path.basename(__dirname), {
 			command_class: 'COMMAND_CLASS_THERMOSTAT_SETPOINT',
 			command_get: 'THERMOSTAT_SETPOINT_GET',
 			command_get_parser: function () {
-				return new Buffer([1]);
+				return {
+					'Level': {
+						'Setpoint Type': 'Heating 1',
+					}
+				};
 			},
 			command_set: 'THERMOSTAT_SETPOINT_SET',
 			command_set_parser: function (value) {
 
-				// This should work in theory (due to 16bit signed int) but it doesn't, wrong values are sent to thermostat
-				// return new Buffer([1, 34, (Math.round(value * 2) / 2 * 10).toFixed(0)]); // Precision = 1, Scale = 0, Size = 2
+				// Create value buffer
+				let a = new Buffer(2);
+				a.writeUInt16BE(( Math.round(value * 2) / 2 * 10).toFixed(0));
 
-				// This only works with values smaller than 127 and greater than -128 (8bit signed int)
-				// return new Buffer([1, 33, (Math.round(value * 2) / 2 * 10).toFixed(0)]); // Precision = 1, Scale = 0, Size = 1
-
-				// Create buffers
-				let a = new Buffer([1, 34]); // Precision = 1, Scale = 0, Size = 2
-
-				// Write temperature value to 2 byte buffer
-				let b = new Buffer(2);
-				b.writeUInt16BE((Math.round(value * 2) / 2 * 10).toFixed(0));
-
-				// Concat the buffers and return
-				return Buffer.concat([a,b]);
+				return {
+					'Level' : {
+						'Setpoint Type': 'Heating 1'
+					},
+					'Level2': {
+						'Size': 2,
+						'Scale': 0,
+						'Precision': 1
+					},
+					'Value': a
+				};
 			},
 			command_report: 'THERMOSTAT_SETPOINT_REPORT',
 			command_report_parser: report => {
 				if (report.hasOwnProperty('Level2')
 					&& report.Level2.hasOwnProperty('Scale')
+					&& report.Level2.hasOwnProperty('Precision')
 					&& report.Level2['Scale'] === 0
-					&& typeof report['Value'].readUIntBE(0, 2) !== 'undefined') {
-					return report['Value'].readUIntBE(0, 2) / 100;
+					&& report.Level2['Size'] !== 'undefined'
+					&& typeof report['Value'].readUIntBE(0, report.Level2['Size']) !== 'undefined') {
+
+					return report['Value'].readUIntBE(0, report.Level2['Size']) / Math.pow(10, report.Level2['Precision']);
 				}
 				return null;
 			},
+			pollInterval: 'poll_interval'
 		},
 	},
 	settings: {

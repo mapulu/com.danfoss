@@ -12,8 +12,8 @@
 		"climate"
 	],
 	"images": {
-		"large": "/assets/images/large.png",
-		"small": "/assets/images/small.png"
+		"large": "/assets/images/large.jpg",
+		"small": "/assets/images/small.jpg"
 	},
 	"author": {
 		"name": "Athom B.V.",
@@ -54,11 +54,27 @@
 				}
 			},
 			"images": {
-				"large": "/drivers/LC13/assets/images/large.png",
-				"small": "/drivers/LC13/assets/images/small.png"
+				"large": "/drivers/LC13/assets/images/large.jpg",
+				"small": "/drivers/LC13/assets/images/small.jpg"
 			},
 			"settings": [
-
+				{
+					"id": "poll_interval",
+					"type": "number",
+					"attr": {
+						"min": 60,
+						"max": 3600
+					},
+					"value": 120,
+					"label": {
+						"en": "Poll Interval",
+						"nl": "Poll Interval"
+					},
+					"hint": {
+						"en": "The amount of seconds between asking the device for a status update.",
+						"nl": "Aantal seconden tussen het opvragen van een status update aan het apparaat."
+					}
+				}
 			]
 		}
 	],
