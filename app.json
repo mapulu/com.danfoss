@@ -3,7 +3,7 @@
 	"name": {
 		"en": "Danfoss"
 	},
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"compatibility": ">=0.9.3",
 	"description": {
 		"en": "Danfoss devices for Homey"
@@ -34,7 +34,6 @@
 					4
 				],
 				"learnmode": {
-					"image": "/drivers/LC13/assets/learnmode.svg",
 					"instruction": {
 						"en": "Press the middle button on your Danfoss LC-13",
 						"nl": "Druk op de middelste knop van de Danfoss LC-13"
