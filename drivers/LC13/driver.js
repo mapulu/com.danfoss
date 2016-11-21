@@ -11,7 +11,17 @@ module.exports = new ZwaveDriver(path.basename(__dirname), {
 			command_class: 'COMMAND_CLASS_BATTERY',
 			command_get: 'BATTERY_GET',
 			command_report: 'BATTERY_REPORT',
-			command_report_parser: report => {
+			command_report_parser: (report, node) => {
+
+				// If prev value is not empty and new value is empty
+				if (node && node.state && node.state.measure_battery !== 1 && report['Battery Level'] === "battery low warning") {
+
+					// Trigger device flow
+					Homey.manager('flow').triggerDevice('battery_alarm', {}, {}, node.device_data, err => {
+						if (err) console.error('Error triggerDevice -> battery_alarm', err);
+					});
+				}
+
 				if (report['Battery Level'] === "battery low warning") return 1;
 				return report['Battery Level (Raw)'][0];
 			}
@@ -34,7 +44,7 @@ module.exports = new ZwaveDriver(path.basename(__dirname), {
 				a.writeUInt16BE(( Math.round(value * 2) / 2 * 10).toFixed(0));
 
 				return {
-					'Level' : {
+					'Level': {
 						'Setpoint Type': 'Heating 1'
 					},
 					'Level2': {
@@ -60,7 +70,5 @@ module.exports = new ZwaveDriver(path.basename(__dirname), {
 			},
 		},
 	},
-	settings: {
-
-	}
+	settings: {}
 });
