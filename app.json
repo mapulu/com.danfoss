@@ -28,7 +28,7 @@
 			"zwave": {
 				"manufacturerId": 2,
 				"productTypeId": 5,
-				"wakeUpInterval": 300,
+				"wakeUpInterval": 1800,
 				"productId": [
 					3,
 					4
