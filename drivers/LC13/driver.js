@@ -6,6 +6,7 @@ const ZwaveDriver = require('node-homey-zwavedriver');
 // http://www.vesternet.com/downloads/dl/file/id/196/product/1128/z_wave_danfoss_lc_13_living_connect_radiator_thermostat_manual.pdf
 
 module.exports = new ZwaveDriver(path.basename(__dirname), {
+	debug: true,
 	capabilities: {
 		measure_battery: {
 			getOnWakeUp: true,
@@ -22,9 +23,9 @@ module.exports = new ZwaveDriver(path.basename(__dirname), {
 						if (err) console.error('Error triggerDevice -> battery_alarm', err);
 					});
 				}
-
-				if (report['Battery Level'] === "battery low warning") return 1;
-				return report['Battery Level (Raw)'][0];
+				if (report['Battery Level'] === 'battery low warning') return 1;
+				if (report.hasOwnProperty('Battery Level (Raw)')) return report['Battery Level (Raw)'][0];
+				return null;
 			}
 		},
 		target_temperature: {
