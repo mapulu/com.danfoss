@@ -64,9 +64,19 @@ module.exports = new ZwaveDriver(path.basename(__dirname), {
 					&& report.Level2.hasOwnProperty('Scale')
 					&& report.Level2.hasOwnProperty('Precision')
 					&& report.Level2['Scale'] === 0
-					&& report.Level2['Size'] !== 'undefined'
-					&& typeof report['Value'].readUIntBE(0, report.Level2['Size']) !== 'undefined') {
-					return report['Value'].readUIntBE(0, report.Level2['Size']) / Math.pow(10, report.Level2['Precision']);
+					&& report.Level2['Size'] !== 'undefined') {
+
+					let readValue;
+					try {
+						readValue = report['Value'].readUIntBE(0, report.Level2['Size']);
+					} catch (err) {
+						return null;
+					}
+
+					if (typeof readValue !== 'undefined') {
+						return readValue / Math.pow(10, report.Level2['Precision']);
+					}
+					return null;
 				}
 				return null;
 			},

@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-var self = module.exports = {
-	init: function () {
-		console.log('com.danfoss running...');
-	}
+const Log = require('homey-log').Log;
+
+module.exports.init = () => {
+	console.log(`${Homey.manifest.id} running...`);
 };
