@@ -65,7 +65,7 @@ module.exports = new ZwaveDriver(path.basename(__dirname), {
 					&& report.Level2.hasOwnProperty('Scale')
 					&& report.Level2.hasOwnProperty('Precision')
 					&& report.Level2['Scale'] === 0
-					&& report.Level2['Size'] !== 'undefined') {
+					&& typeof report.Level2['Size'] !== 'undefined') {
 
 					let readValue;
 					try {
