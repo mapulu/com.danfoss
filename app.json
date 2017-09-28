@@ -14,6 +14,22 @@
   "category": [
     "climate"
   ],
+  "tags": {
+    "en": [
+      "thermostat",
+      "heating",
+      "valve",
+      "thermovalve",
+      "danfoss"
+    ],
+    "nl": [
+      "thermostaat",
+      "verwarming",
+      "ventiel",
+      "thermostaatknop",
+      "danfoss"
+    ]
+  },
   "images": {
     "large": "/assets/images/large.jpg",
     "small": "/assets/images/small.jpg"
