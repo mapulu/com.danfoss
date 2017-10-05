@@ -86,6 +86,12 @@
             "capabilities": []
           },
           {
+            "id": "sensor",
+            "capabilities": [
+              "alarm_battery"
+            ]
+          },
+          {
             "id": "battery",
             "capabilities": [
               "measure_battery"
@@ -102,7 +108,8 @@
       "class": "thermostat",
       "capabilities": [
         "target_temperature",
-        "measure_battery"
+        "measure_battery",
+        "alarm_battery"
       ],
       "capabilitiesOptions": {
         "target_temperature": {
