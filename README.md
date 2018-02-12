@@ -9,7 +9,10 @@ Makes Homey work with the z-wave version of the Danfoss LC12 and LC13 models
 * English
 * Dutch
    
-## Change Log:   
+## Change Log:
+
+### v 2.0.1
+Fix a bug causing a timeout error in the smartphone app v2   
     
 ### v 2.0.0  
 Complete re-write in SDKv2  
