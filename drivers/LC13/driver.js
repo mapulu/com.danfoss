@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const ZwaveDriver = require('node-homey-zwavedriver');
+const ZwaveDriver = require('homey-zwavedriver');
 
 // http://www.vesternet.com/downloads/dl/file/id/196/product/1128/z_wave_danfoss_lc_13_living_connect_radiator_thermostat_manual.pdf
 

@@ -4,9 +4,8 @@
   "description": "This app adds support for Danfoss devices!",
   "main": "app.js",
   "dependencies": {
-    "homey-zwavedriver": "^1.1.4",
-    "node-homey-zwavedriver": "^1.1.0",
-    "homey-log": "^1.0.2"
+    "homey-log": "^1.0.2",
+    "homey-zwavedriver": "git+https://github.com/athombv/node-homey-zwavedriver.git"
   },
   "devDependencies": {},
   "scripts": {
