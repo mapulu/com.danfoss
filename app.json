@@ -1,16 +1,35 @@
 {
   "id": "com.danfoss",
+  "sdk": 2,
   "name": {
-    "en": "Danfoss"
+    "en": "Danfoss",
+    "nl": "Danfoss"
   },
-  "version": "1.1.3",
-  "compatibility": ">=0.9.3",
+  "version": "2.0.1",
+  "compatibility": ">=1.5.3",
   "description": {
-    "en": "Danfoss devices for Homey"
+    "en": "Danfoss Thermostat valves support for Homey",
+    "nl": "Danfoss Theromstaat knoppen ondersteuning voor Homey"
   },
   "category": [
     "climate"
   ],
+  "tags": {
+    "en": [
+      "thermostat",
+      "heating",
+      "valve",
+      "thermovalve",
+      "danfoss"
+    ],
+    "nl": [
+      "thermostaat",
+      "verwarming",
+      "ventiel",
+      "thermostaatknop",
+      "danfoss"
+    ]
+  },
   "images": {
     "large": "/assets/images/large.jpg",
     "small": "/assets/images/small.jpg"
@@ -19,11 +38,24 @@
     "name": "Athom B.V.",
     "email": "info@athom.com"
   },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Athom B.V.",
+        "email": "info@athom.com"
+      },
+      {
+        "name": "Marco Ruiter",
+        "email": "mruiter@tuxweb.nl"
+      }
+    ]
+  },
   "drivers": [
     {
       "id": "LC13",
       "name": {
-        "en": "LC-13"
+        "en": "LC Thermostat",
+        "nl": "LC Thermostaat"
       },
       "zwave": {
         "manufacturerId": 2,
@@ -39,8 +71,8 @@
         ],
         "learnmode": {
           "instruction": {
-            "en": "Press the middle button on your Danfoss LC-13",
-            "nl": "Druk op de middelste knop van de Danfoss LC-13"
+            "en": "Press the middle button on your Danfoss LC",
+            "nl": "Druk op de middelste knop van de Danfoss LC"
           }
         },
         "associationGroups": [
@@ -52,6 +84,12 @@
           {
             "id": "icon",
             "capabilities": []
+          },
+          {
+            "id": "sensor",
+            "capabilities": [
+              "alarm_battery"
+            ]
           },
           {
             "id": "battery",
@@ -70,7 +108,8 @@
       "class": "thermostat",
       "capabilities": [
         "target_temperature",
-        "measure_battery"
+        "measure_battery",
+        "alarm_battery"
       ],
       "capabilitiesOptions": {
         "target_temperature": {
@@ -101,6 +140,7 @@
           }
         ]
       }
-    ]
+    ],
+    "actions": []
   }
 }
