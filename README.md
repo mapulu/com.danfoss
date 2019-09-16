@@ -11,6 +11,9 @@ Makes Homey work with the z-wave version of the Danfoss LC12 and LC13 models
    
 ## Change Log:
 
+### v 2.1.0
+Adds support for Energy
+
 ### v 2.0.1
 Fix a bug causing a timeout error in the smartphone app v2   
     
