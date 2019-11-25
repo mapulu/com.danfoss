@@ -1,0 +1,13 @@
+{
+  "triggers": [
+    {
+      "id": "DanfossRS_btn_1",
+      "title": {
+        "en": "Button pressed",
+        "nl": "Knop ingedrukt"
+      }
+    }
+  ],
+  "conditions": [],
+  "actions": []
+}

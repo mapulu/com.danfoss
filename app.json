@@ -5,7 +5,7 @@
     "en": "Danfoss",
     "nl": "Danfoss"
   },
-  "version": "2.1.0",
+  "version": "2.1.1",
   "compatibility": ">=3.0.0",
   "description": {
     "en": "Danfoss Thermostat valves support for Homey",
@@ -47,6 +47,38 @@
       {
         "name": "Marco Ruiter",
         "email": "mruiter@tuxweb.nl"
+      }
+    ]
+  },
+  "flow": {
+    "triggers": [
+      {
+        "id": "battery_alarm",
+        "title": {
+          "en": "The battery alarm turned on",
+          "nl": "De batterijwaarschuwing gaat aan"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=LC13"
+          }
+        ]
+      },
+      {
+        "id": "DanfossRS_btn_1",
+        "title": {
+          "en": "Button pressed",
+          "nl": "Knop ingedrukt"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=RSZ"
+          }
+        ]
       }
     ]
   },
@@ -128,25 +160,62 @@
         "large": "/drivers/LC13/assets/images/large.jpg",
         "small": "/drivers/LC13/assets/images/small.jpg"
       }
-    }
-  ],
-  "flow": {
-    "triggers": [
-      {
-        "id": "battery_alarm",
-        "title": {
-          "en": "The battery alarm turned on",
-          "nl": "De batterijwaarschuwing gaat aan"
-        },
-        "args": [
-          {
-            "name": "device",
-            "type": "device",
-            "filter": "driver_id=LC13"
-          }
+    },
+    {
+      "id": "RSZ",
+      "class": "thermostat",
+      "name": {
+        "en": "Room Thermostat",
+        "nl": "Kamerthermostaat"
+      },
+      "capabilities": [
+        "measure_battery",
+        "target_temperature",
+        "measure_temperature"
+      ],
+      "capabilitiesOptions": {
+        "target_temperature": {
+          "decimals": 1
+        }
+      },
+      "images": {
+        "large": "/drivers/RSZ/assets/images/large.png",
+        "small": "/drivers/RSZ/assets/images/small.png"
+      },
+      "energy": {
+        "batteries": [
+          "AA",
+          "AA"
         ]
+      },
+      "zwave": {
+        "manufacturerId": 2,
+        "productTypeId": [
+          3
+        ],
+        "productId": [
+          32784
+        ],
+        "wakeUpInterval": 3600,
+        "learnmode": {
+          "image": "/drivers/RSZ/assets/learnmode.svg",
+          "instruction": {
+            "en": "Press the button on top of the Room Thermostat to start pairing.",
+            "nl": "Druk op de knop boven op de Kamerthermostaat om het apparaat toe te voegen."
+          }
+        },
+        "unlearnmode": {
+          "image": "/drivers/RSZ/assets/learnmode.svg",
+          "instruction": {
+            "en": "Press the button on top of the Room Thermostat to remove the device.",
+            "nl": "Druk op de knop boven op de Kamerthermostaat om het apparaat te verwijderen."
+          }
+        },
+        "zwaveAllianceProductId": 1063,
+        "imageRemotePath": "http://products.z-wavealliance.org/ProductImages/Index?productName=ZC08-14070002",
+        "associationGroups": [],
+        "associationGroupsOptions": {}
       }
-    ],
-    "actions": []
-  }
+    }
+  ]
 }
